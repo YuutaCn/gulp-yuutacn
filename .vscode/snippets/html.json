@@ -36,9 +36,9 @@
     "body": [
       "<nav class=\"nav\" title=\"$1\">",
       "  <ul class=\"nav__list\">",
-      "    <li class=\"nav__item\"><a href=\"#\" class=\"nav__link\"></a></li>",
-      "    <li class=\"nav__item\"><a href=\"#\" class=\"nav__link\"></a></li>",
-      "    <li class=\"nav__item\"><a href=\"#\" class=\"nav__link\"></a></li>",
+      "    <li class=\"nav__item\"><a href=\"#no-scrolling\" class=\"nav__link\"></a></li>",
+      "    <li class=\"nav__item\"><a href=\"#no-scrolling\" class=\"nav__link\"></a></li>",
+      "    <li class=\"nav__item\"><a href=\"#no-scrolling\" class=\"nav__link\"></a></li>",
       "  </ul>",
       "</nav>"
     ],
@@ -103,9 +103,9 @@
     "prefix": "g-picture",
     "body": [
       "<picture>",
-      "  <source srcset=\"$1.avif\" type=\"image/avif\">",
-      "  <source srcset=\"$1.webp\" type=\"image/webp\">",
-      "  <img loading=\"lazy\" src=\"$1.$2\" class=\"image\" width=\"$4\" height=\"$5\" alt=\"$3\">",
+      "  <source srcset=\"/img/$1.avif\" type=\"image/avif\">",
+      "  <source srcset=\"/img/$1.webp\" type=\"image/webp\">",
+      "  <img loading=\"lazy\" src=\"/img/$1.$2\" class=\"image\" width=\"$4\" height=\"$5\" alt=\"$3\">",
       "</picture>"
     ],
     "description": "Snippet for basic logo structure"
