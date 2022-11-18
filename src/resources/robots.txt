@@ -1,0 +1,9 @@
+User-agent: *
+User-agent: Yandex
+User-agent: Googlebot
+Disallow:
+Disallow: /js
+Disallow: /img/
+Disallow: /css
+Host: www.yuuta-the-best.com
+Sitemap: http://yuuta-the-best.com/sitemap.xml

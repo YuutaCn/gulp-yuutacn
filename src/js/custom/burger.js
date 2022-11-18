@@ -1,6 +1,3 @@
-// import { disableScroll } from '../functions/disable-scroll';
-// import { enableScroll } from '../functions/enable-scroll';
-
 let burgeMenuStatus = false;
 
 (function () {
@@ -17,12 +14,10 @@ let burgeMenuStatus = false;
     if (menu?.classList.contains('menu--active')) {
       burger?.setAttribute('aria-expanded', 'true');
       burger?.setAttribute('aria-label', 'Закрыть меню');
-      // disableScroll();
       burgeMenuStatus = true;
     } else {
       burger?.setAttribute('aria-expanded', 'false');
       burger?.setAttribute('aria-label', 'Открыть меню');
-      // enableScroll();
       burgeMenuStatus = false;
     }
   }
@@ -32,7 +27,6 @@ let burgeMenuStatus = false;
     burger?.setAttribute('aria-label', 'Открыть меню');
     burger.classList.remove('burger--active');
     menu.classList.remove('menu--active');
-    // enableScroll();
     burgeMenuStatus = false;
   }
 
@@ -50,7 +44,6 @@ let burgeMenuStatus = false;
       burger?.setAttribute('aria-label', 'Открыть меню');
       burger.classList.remove('burger--active');
       menu.classList.remove('menu--active');
-      // enableScroll();
       burgeMenuStatus = false;
     });
   });
@@ -106,3 +99,4 @@ let burgeMenuStatus = false;
     yDown = null;
   };
 })();
+

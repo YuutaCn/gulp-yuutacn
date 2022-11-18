@@ -22,6 +22,7 @@ const htmlmin = require('gulp-htmlmin');
 const gulpif = require('gulp-if');
 const notify = require('gulp-notify');
 const image = require('gulp-imagemin');
+const jsmin = require('gulp-jsmin');
 const {
   readFileSync
 } = require('fs');
@@ -45,7 +46,6 @@ const paths = {
   srcScss: `${srcFolder}/scss/**/*.scss`,
   buildCssFolder: `${buildFolder}/css`,
   srcFullJs: `${srcFolder}/js/**/*.js`,
-  srcMainJs: `${srcFolder}/js/main.js`,
   buildJsFolder: `${buildFolder}/js`,
   srcPartialsFolder: `${srcFolder}/partials`,
   resourcesFolder: `${srcFolder}/resources`,
@@ -133,82 +133,16 @@ const stylesBackend = () => {
 
 // scripts
 const scripts = () => {
-  return src(paths.srcMainJs)
+  return src(paths.srcFullJs)
     .pipe(plumber(
       notify.onError({
         title: "JS",
         message: "Error: <%= error.message %>"
       })
     ))
-    .pipe(webpackStream({
-      mode: isProd ? 'production' : 'development',
-      output: {
-        filename: 'main.js',
-      },
-      module: {
-        rules: [{
-          test: /\.m?js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                ['@babel/preset-env', {
-                  targets: "defaults"
-                }]
-              ]
-            }
-          }
-        }]
-      },
-      devtool: !isProd ? 'source-map' : false
-    }))
-    .on('error', function (err) {
-      console.error('WEBPACK ERROR', err);
-      this.emit('end');
-    })
+    .pipe(jsmin())
     .pipe(dest(paths.buildJsFolder))
-    .pipe(browserSync.stream());
-}
-
-// scripts backend
-const scriptsBackend = () => {
-  return src(paths.srcMainJs)
-    .pipe(plumber(
-      notify.onError({
-        title: "JS",
-        message: "Error: <%= error.message %>"
-      })
-    ))
-    .pipe(webpackStream({
-      mode: 'development',
-      output: {
-        filename: 'main.js',
-      },
-      module: {
-        rules: [{
-          test: /\.m?js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                ['@babel/preset-env', {
-                  targets: "defaults"
-                }]
-              ]
-            }
-          }
-        }]
-      },
-      devtool: false
-    }))
-    .on('error', function (err) {
-      console.error('WEBPACK ERROR', err);
-      this.emit('end');
-    })
-    .pipe(dest(paths.buildJsFolder))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream())
 }
 
 const resources = () => {
@@ -324,9 +258,9 @@ const toProd = (done) => {
   done();
 };
 
-exports.default = series(clean, htmlInclude, scripts, styles, resources, images, webpImages, svgSprites, watchFiles);
+exports.default = series(clean, htmlInclude, scripts, styles, resources, images, webpImages, avifImages, svgSprites, watchFiles);
 
-exports.backend = series(clean, htmlInclude, scriptsBackend, stylesBackend, resources, images, webpImages, avifImages, svgSprites)
+exports.backend = series(clean, htmlInclude, scripts, stylesBackend, resources, images, webpImages, avifImages, svgSprites)
 
 exports.build = series(toProd, clean, htmlInclude, scripts, styles, resources, images, webpImages, avifImages, svgSprites, htmlMinify);
 
