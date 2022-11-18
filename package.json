@@ -1,6 +1,6 @@
 {
   "name": "gulp-builder",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "gulp-builder for weblayout",
   "main": "gulpfile.js",
   "scripts": {
@@ -13,8 +13,8 @@
     "code": "editorconfig-checker",
     "deploy-in-gh": "gh-pages -d app"
   },
-  "author": "Yuuta Segawa",
-  "license": "ISC",
+  "author": "Vitaly Koiro",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
