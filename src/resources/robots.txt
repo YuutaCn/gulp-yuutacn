@@ -1,0 +1,9 @@
+User-agent: *
+User-agent: Yandex
+User-agent: Googlebot
+Disallow:
+Disallow: /js
+Disallow: /img/
+Disallow: /css
+Host: www.domen.con
+Sitemap: http://domen.com''/sitemap.xml
